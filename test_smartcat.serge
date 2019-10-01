@@ -1,0 +1,78 @@
+# Config for a test Smartcat Serge integration example with https://bitbucket.org/ta2-1/test-smartcat/src repo
+# 
+
+sync
+{
+    ts
+    {
+        plugin                      Smartcat
+
+        data
+        {
+            project_id              aaaabbbb-cccc-dddd-eeee-ffffffffffff
+             
+            push
+            {                
+                disassemble_algorithm_name       Serge.io PO
+            }
+
+            pull
+            {
+                complete_projects                     NO
+                complete_documents                    NO
+            }
+            
+            log_file                             /var/serge/log/serge_smartcat.log
+        }
+    }
+
+    vcs
+    {
+        plugin                      git
+        data
+        {
+            email                   taras.semenenko@gmail.com
+            name                    L10N Robot
+            local_path              /var/serge/vcs/test_smartcat
+            
+            remote_path 
+            {
+                master              git@bitbucket.org:ta2-1/test-smartcat.git
+            }
+
+            add_unversioned         YES
+        }
+    }
+}
+
+jobs
+{
+    :master
+    {
+        id                      job.test_smartcat
+        
+        db_source               DBI:SQLite:dbname=/var/serge/db/test_smartcat.db
+        db_namespace            test_smartcat
+        
+        source_language         en
+        destination_languages   ru uk es
+        
+        source_dir              /var/serge/vcs/test_smartcat_master/master
+        source_match            `en.json`
+        
+        ts_file_path            /var/serge/ts/test_smartcat_master/%LANG%/en.json.po
+        output_file_path        /var/serge/vcs/test_smartcat_master/master/translations/%LOCALE%.json
+
+        leave_untranslated_blank    YES
+        
+        parser
+        {
+            plugin                  parse_json
+            data
+            {
+                path_matches         (name|country|description)$
+            }
+        }
+
+    }
+}
