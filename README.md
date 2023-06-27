@@ -1,3 +1,13 @@
-This repository contains historic project files mentioned in this [tutorial video](https://www.youtube.com/watch?v=r-psi-JIWIE&t=31s).
+&nbsp;
 
-If you are setting up a new Serge and Smartcat integration project, [use this bootstrap project and tutorial instead](https://github.com/smartcatai/smartcat-serge-bootstrap).
+&nbsp;
+
+### This repository is deprecated. Smartcat now has a dedicated workflow, APIs and CLI to work with software localization projects. Check out our [Software Localization Projects in Smartcat](https://developers.smartcat.com/software-localization/) guide.
+
+&nbsp;
+
+&nbsp;
+
+---
+
+This repository contains historic project files mentioned in this [tutorial video](https://www.youtube.com/watch?v=r-psi-JIWIE&t=31s).
